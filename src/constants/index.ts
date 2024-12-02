@@ -1,0 +1,9 @@
+export const ERROR_LOADING_ARTICLES = 'Ocurrió un error al cargar los artículos.';
+export const TITLE_ACUMULATED_GRID = 'Acumulado Grilla';
+export const BUTTON_LABEL_MORE_NOTES = 'Más notas de acumulado grilla';
+export const ERROR_FETCHING_ARTICLES = 'Error al obtener los artículos';
+export const NO_SELECTED_CARD = 'No hay Receta seleccionada.';
+export const USES_IN_THE_KITCHEN = 'usos en la Cocina';
+export const RECIPE_TITLE = 'Receta';
+export const ERROR_UNKNOWN = 'Ocurrió un error desconocido.';
+export const NO_ARTICLES_FOUND = 'No se encontraron artículos relacionados con esta etiqueta.';

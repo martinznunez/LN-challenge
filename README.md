@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Proyecto Acumulado Grilla
 
-## Getting Started
+Se optó por utilizar Next.js v15 para la construcción de la aplicación, lo que permitió mejorar el rendimiento de los datos mediante el uso de componentes de **Server-Side Rendering (SSR)**, optimizando la carga de la información externa y asegurando una experiencia de usuario fluida.
 
-First, run the development server:
+## Características Principales
+
+### 1. **Vista de Artículos y Recetas**
+La aplicación presenta una grilla con los artículos más relevantes, basados en las recetas más mencionadas o populares. Esta vista inicial permite a los usuarios acceder a los artículos de manera organizada.
+
+### 2. **Grilla de Resultados**
+Además de la vista de artículos, se incluyó una funcionalidad que permite al usuario ingresar un **"slug"** (identificador único) para filtrar y ver todas las recetas asociadas a ese slug. Esta funcionalidad permite al usuario obtener información precisa y personalizada.
+
+### 3. **Vista Individual**
+Se implementó una vista individual para cada receta, permitiendo al usuario ver los detalles de forma más clara y detallada. Para facilitar esta visualización, se eligió utilizar un contexto que gestiona la información de la receta seleccionada, lo que permite acceder a los detalles y explorar otros puntos de vista relacionados con la receta.
+
+Esta solución fue seleccionada teniendo en cuenta que no es posible acceder directamente a los datos de la receta solo con la URL. Una posible alternativa habría sido realizar un nuevo fetch para obtener los detalles de la receta a través de un identificador específico, pero se optó por el contexto para manejar los datos de manera más centralizada.
+
+
+### 4. **Optimización con SSR en la Grilla de Artículos Frecuentes**
+En la grilla de los artículos más frecuentes, se optó por **Server-Side Rendering (SSR)** para mejorar la eficiencia de la carga de datos. Se determinó que hacer una nueva petición en el servidor era más eficiente y de menor costo que almacenar los datos localmente, lo que permite que la aplicación siempre entregue información actualizada sin sobrecargar el navegador del usuario.
+
+## Objetivos y Propósito
+
+
+1. **Agrupación, Ordenamiento y Totalización de Tags**: 
+   - Se extrajeron los **tags** de cada artículo desde el atributo `taxonomy.tags`.
+   - Se **agrupó y totalizó** la cantidad de veces que cada tag apareció, para luego ordenarlos de mayor a menor.
+   - Los 10 primeros tags fueron mostrados debajo del título "Acumulado Grilla", tal como se indica en los requerimientos.
+   - El `href` para cada tag contiene el slug correspondiente, de la forma: `/tema/[tag.slug]`.
+
+2. **Listado de Artículos**:
+   - Se listaron **30 artículos** en una grilla, pero solo se consideraron aquellos cuyo **subtype** era igual a `"7"`.
+   - Se extrajo el **título** de cada artículo desde `headline.basic`.
+   - La **fecha** se extrajo desde el atributo `display_date` y se formateó de acuerdo con la maqueta.
+   - Las imágenes de cada artículo se tomaron desde el atributo `promo_items.basics.url`.
+
+
+
+## Installation
+
+To set up the project on your local machine, follow these steps:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+npm run test
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+npm test -- --coverage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+NEXT_PUBLIC_API_BASE_URL=KEY
